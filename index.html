@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html manifest="manifest.appcache">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+		
+		<title>Sloth - tt</title>
+		
+		<link rel="icon" href="media/icon.128.png"/>
+		
+		<link rel="stylesheet" href="css/main.css"/>
+		
+		<script type="text/javascript" src="lib/MooTools-Core-1.6.0.js"></script>
+		<script type="text/javascript" src="lib/Epitome-min.js"></script>
+		<script type="text/javascript" src="js/datepicker.js"></script>
+		<script type="text/javascript" src="js/timepicker.js"></script>
+		<script type="text/javascript" src="js/colorpicker.js"></script>
+		<script type="text/javascript" src="js/mvc.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</head>
+	<body>
+		<div id="maincontainer">
+			<header>
+				<a class="button left" href="" title="Back to timer" id="back-to-timer">&#9202;</a>
+				<a class="button" href="#!create" title="Create a new timer" id="open-create">&#9998;</a>
+				<h1 id="timer-title"></h1>
+				<h1 id="create-title">Create</h1>
+			</header>
+			<div class="main" id="create">
+				<ul>
+					<li>
+						<label>
+							<span>Choose a beautiful title</span>
+							<input type="text" id="create-title-value"/>
+						</label>
+					</li>
+					<li>
+						<label>
+							<span>When will this timer expire?</span>
+						</label>
+						<div id="date-picker"></div>
+						<div id="time-picker"></div>
+					</li>
+					<li>
+						<label>
+							<span>Choose your favourite color</span>
+						</label>
+						<div id="color-picker"></div>
+					</li>
+					<li>
+						<label>
+							<span>To share this timer copy and paste the following link&hellip;</span>
+							<input type="text" readonly="readonly" id="create-output"/>
+							<a href="" title="Open this timer" id="open-created-link">Open this timer</a>
+						</label>
+					</li>
+					<li>
+						<label>
+							<span>&hellip; or try some predefined timers:</span>
+							<ul class="list">
+								<li><a href="#!timer/End of UNIX era/#E54C4C/2038/1/19/3/14/7" title="End of UNIX era">End of UNIX era</a></li>
+								<li><a href="" title="Next Halloween" id="next-halloween">Next Halloween</a></li>
+								<li><a href="#!timer/&bigstar;My Birth&bigstar;/#52C552/1984/9/20/19/15/00" title="This is my birth date">When I was born</a></li>
+								<li><a href="#!timer/Columbus dicovered America/#39C5C5/1492/10/3/0/0/0" title="Columbus dicovered America">Columbus dicovered America</a></li>
+							</ul>
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class="main" id="timer">
+				<div id="timer-timer">
+					
+				</div>
+				<p>To share this timer copy and paste the following link: <br/>
+				<input type="text" readonly="readonly" id="share-link"/></p>
+			</div>
+			<footer>
+				<p>Thanks for using <strong>Sloth-tt</strong>.</p>
+				<p><strong>Sloth-tt</strong> is powered by <a href="http://mootools.net" title="MooTools">MooTools</a> and <a href="http://epitome-mvc.github.io/Epitome/" title="Epitome - MVC">Epitome</a>.</p>
+				<p>Copyright &copy; 2016 mastro-elfo.</p>
+			</footer>
+		</div>
+	</body>
+</html>
