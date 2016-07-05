@@ -18,9 +18,9 @@
 				timerColor: 'inherit'
 			},
 			'onChange:title': function(){
-				if(this.get('title') == '') {
-					this.set('title', ' ');
-				}
+				//if(this.get('title') == '') {
+				//	this.set('title', ' ');
+				//}
 			}
 		},
 		reset: function(){

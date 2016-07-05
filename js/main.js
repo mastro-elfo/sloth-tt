@@ -79,7 +79,7 @@
 			model: timer,
 			element: 'create-title-value',
 			onRender: function(){
-				this.element.set('value', this.model.get('title').trim());
+				this.element.set('value', this.model.get('title')/*.trim()*/);
 			},
 			events: {
 				'keyup': 'update'
