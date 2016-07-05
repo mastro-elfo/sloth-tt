@@ -1,0 +1,308 @@
+
+html {
+	font-family: arial, sans-serif;
+  letter-spacing: 0.1em;
+  color: #333;
+  background-color: #eee;
+}
+body {
+	padding: 0;
+  margin: 0;
+}
+
+h1 {
+	margin: 0;
+}
+
+*.small {
+	font-size: 50%;
+}
+
+/* header */
+header {
+  font-size: 2rem;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  color: #999;
+}
+header > .button {
+  font-size: 1.5em;
+	float: right;
+  display: block;
+  width: 1.333em;
+  height: 1.333em;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+header > .button.left {
+	float: left;
+}
+#open-info > span {
+  font-family: monospace;
+}
+#open-create {
+	font-weight: bold;
+}
+
+header > h1 {
+	font-size: inherit;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* view by page */
+#maincontainer > header > h1,
+#maincontainer > div.main{
+	display: none;
+}
+#maincontainer[data-page="timer"] #timer-title,
+#maincontainer[data-page="timer"] #timer{
+	display: block;
+}
+#maincontainer[data-page="create"] #create-title,
+#maincontainer[data-page="create"] #create{
+	display: block;
+}
+
+#maincontainer[data-page="timer"] #back-to-timer {
+	opacity: 0;
+}
+
+#maincontainer[data-page="create"] #open-create {
+	opacity: 0;
+}
+
+/* Timer */
+#timer-timer {
+	font-size: 5em;
+  text-align: center;
+  margin: 1em 0;
+}
+
+@media (max-width: 550px) {
+	#timer-timer {
+  	font-size: 4.5em;
+	}
+}
+@media (max-width: 500px) {
+	#timer-timer {
+  	font-size: 4.0em;
+	}
+}
+@media (max-width: 450px) {
+	#timer-timer {
+  	font-size: 3.5em;
+	}
+}
+@media (max-width: 400px) {
+	#timer-timer {
+  	font-size: 3.0em;
+	}
+}
+@media (max-width: 350px) {
+	#timer-timer {
+  	font-size: 2.5em;
+	}
+}
+@media (max-width: 300px) {
+	#timer-timer {
+  	font-size: 2.0em;
+	}
+}
+#create ul {
+	list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#create ul.list {
+  list-style: initial;
+  padding: 0 0 0 1em;
+}
+
+#create li {
+	clear: both;
+}
+
+#create label {
+  display: block;
+  padding: 1em 1em 0;
+  line-height: 2em;
+  
+}
+
+#create label span {
+  display: block;
+}
+
+#create input {
+	display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+div.main h1,
+div.main p {
+	padding: 0 1em;
+}
+
+footer {
+  font-size: 75%;
+}
+
+footer p {
+	padding: 0 1em;
+}
+
+/* date picker */
+#date-picker {
+	background-color: #ddd;
+}
+
+#date-picker .datepicker-body {
+	height: 6em;
+}
+
+#date-picker .datepicker-header {
+	height: 1em;
+}
+
+#date-picker .datepicker-header > div {
+	float: left;
+}
+
+#date-picker .datepicker-header .datepicker-leftarrow,
+#date-picker .datepicker-header .datepicker-rightarrow {
+	width: 20%;
+}
+
+#date-picker .datepicker-header .datepicker-title {
+	width: 60%;
+}
+
+#date-picker .datepicker-header .datepicker-leftarrow,
+#date-picker .datepicker-header .datepicker-rightarrow,
+#date-picker .datepicker-header .datepicker-title {
+	text-align: center;
+  cursor: pointer;
+}
+
+#date-picker .datepicker-week {
+	clear: both;
+}
+
+#date-picker .datepicker-day {
+	float: left;
+  font-size: 0.9em;
+  height: 1.1em;
+  line-height: 1.1em;
+  width: 14.2%;
+  text-align: center;
+  cursor: pointer;
+}
+
+#date-picker .datepicker-othermonth {
+	color: #ccc;
+}
+
+#date-picker .datepicker-dayselected {
+	color: red;
+}
+
+/* time picker */
+#time-picker {
+	position: relative;
+}
+
+#time-picker .timepicker-block {
+  width: 42%;
+  float: left;
+  margin-left: 6%;
+  text-align: center;
+}
+
+#time-picker .timepicker-plus,
+#time-picker .timepicker-minus,
+#time-picker .timepicker-value {
+  font-size: 2em;
+	height: 1.334em;
+  line-height: 1.334em;
+  cursor: pointer;
+}
+
+#time-picker .timepicker-value {
+	background-color: #fff;
+  border-radius: 0.2em;
+  border: none;
+  text-align: center;
+}
+
+/* date and time picker */
+#date-picker,
+#time-picker{
+  position: relative;
+  font-size: 1.2em;
+}
+@media (orientation: landscape) {
+  #date-picker,
+  #time-picker{
+    width: 40%;
+    float: left;
+    margin: 1em 5%;
+  }
+}
+@media (orientation: portrait) {
+  #date-picker,
+  #time-picker{}
+}
+
+/* Color picker */
+#color-picker {
+	padding: 1em;
+}
+
+#color-picker .colorpicker-color {
+  font-size: 2em;
+	width: 1em;
+  height: 1em;
+  float: left;
+  margin: 0 1em 1em 0;
+  border-radius: 0.2em;
+  cursor: pointer;
+  position: relative;
+}
+
+#color-picker .colorpicker-color.selected:after {
+	content: "\2713";
+  color: #eee;
+  text-align: center;
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: 1px solid;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Share link */
+#share-link {
+	width: 100%;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
+
+
+
+
+
