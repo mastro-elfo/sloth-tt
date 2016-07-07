@@ -14,10 +14,12 @@
 				hour: 0,
 				minute: 0,
 				second: 0,
-				title: ' ',
+				title: '',
+				titleURI: '',
 				timerColor: 'inherit'
 			},
 			'onChange:title': function(){
+				this.set('titleURI', encodeURIComponent(this.get('title')));
 				//if(this.get('title') == '') {
 				//	this.set('title', ' ');
 				//}

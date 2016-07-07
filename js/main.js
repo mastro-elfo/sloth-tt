@@ -93,9 +93,9 @@
 		new window.MVC.Create({
 			model: timer,
 			element: 'create-output',
-			template: location.href.replace(/#.*$/, '')+'#!timer/<%=title%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
+			template: location.href.replace(/#.*$/, '')+'#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
 			onRender: function(){
-				this.element.set('value', this.template(this.model.toJSON()));
+				this.element.set('value', (this.template(this.model.toJSON())));
 			}
 		});
 		
@@ -103,9 +103,9 @@
 		new window.MVC.Create({
 			model: timer,
 			element: 'open-created-link',
-			template: '#!timer/<%=title%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
+			template: '#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
 			onRender: function(){
-				this.element.set('href', this.template(this.model.toJSON()));
+				this.element.set('href', (this.template(this.model.toJSON())));
 			},
 			onReady: function(){
 				this.render();
@@ -116,9 +116,9 @@
 		new window.MVC.Create({
 			model: timer,
 			element: 'share-link',
-			template: location.href.replace(/#.*$/, '')+'#!timer/<%=title%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
+			template: location.href.replace(/#.*$/, '')+'#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
 			onRender: function(){
-				this.element.set('value', this.template(this.model.toJSON()));
+				this.element.set('value', (this.template(this.model.toJSON())));
 			},
 			onReady: function(){
 				this.render();
@@ -129,9 +129,9 @@
 		new window.MVC.Create({
 			model: timer,
 			element: 'back-to-timer',
-			template: '#!timer/<%=title%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
+			template: '#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
 			onRender: function(){
-				this.element.set('href', this.template(this.model.toJSON()));
+				this.element.set('href', (this.template(this.model.toJSON())));
 			},
 			onReady: function(){
 				this.render();
