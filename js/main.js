@@ -95,7 +95,7 @@
 			element: 'create-output',
 			template: location.href.replace(/#.*$/, '')+'#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
 			onRender: function(){
-				this.element.set('value', (this.template(this.model.toJSON())));
+				this.element.set('value', this.template(this.model.toJSON()));
 			}
 		});
 		
@@ -105,7 +105,7 @@
 			element: 'open-created-link',
 			template: '#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
 			onRender: function(){
-				this.element.set('href', (this.template(this.model.toJSON())));
+				this.element.set('href', this.template(this.model.toJSON()));
 			},
 			onReady: function(){
 				this.render();
@@ -118,7 +118,7 @@
 			element: 'share-link',
 			template: location.href.replace(/#.*$/, '')+'#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
 			onRender: function(){
-				this.element.set('value', (this.template(this.model.toJSON())));
+				this.element.set('value', this.template(this.model.toJSON()));
 			},
 			onReady: function(){
 				this.render();
@@ -131,10 +131,46 @@
 			element: 'back-to-timer',
 			template: '#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
 			onRender: function(){
-				this.element.set('href', (this.template(this.model.toJSON())));
+				this.element.set('href', this.template(this.model.toJSON()));
 			},
 			onReady: function(){
 				this.render();
+			}
+		});
+		
+		// QRCode
+		new window.MVC.Create({
+			model: timer,
+			element: 'qrcode',
+			template: location.href.replace(/#.*$/, '')+'#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
+			onRender: function(){
+				this.timeout && clearTimeout(this.timeout);
+				var self = this;
+				// Delay rendering to improve performances
+				this.timeout = setTimeout(function(){
+					self.empty();
+					self.qrcode = new QRCode(self.element, {
+						text: self.template(self.model.toJSON()),
+						width: 256,
+						height: 256,
+						colorDark : '#000000',
+						colorLight : '#ffffff',
+						correctLevel : QRCode.CorrectLevel.H,
+					});
+				}, 500);
+			},
+			onReady: function(){
+				this.render();
+				var self = this;
+				$('qrcode-toggle').addEvent('click', function(){
+					self.element.addClass('open');
+				});
+			},
+			events: {
+				'click': 'close'
+			},
+			onClose: function(){
+				this.element.removeClass('open');
 			}
 		});
 		

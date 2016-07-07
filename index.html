@@ -14,8 +14,9 @@
 		
 		<link rel="stylesheet" href="css/main.css"/>
 		
-		<script type="text/javascript" src="lib/MooTools-Core-1.6.0.js"></script>
+		<script type="text/javascript" src="lib/MooTools-Core-1.6.0-compressed.js"></script>
 		<script type="text/javascript" src="lib/Epitome-min.js"></script>
+		<script type="text/javascript" src="lib/qrcode-min.js"></script>
 		<script type="text/javascript" src="js/datepicker.js"></script>
 		<script type="text/javascript" src="js/timepicker.js"></script>
 		<script type="text/javascript" src="js/colorpicker.js"></script>
@@ -72,15 +73,14 @@
 				</ul>
 			</div>
 			<div class="main" id="timer">
-				<div id="timer-timer">
-					
-				</div>
+				<div id="timer-timer"></div>
 				<p>To share this timer copy and paste the following link: <br/>
 				<input type="text" readonly="readonly" id="share-link"/></p>
+				<p>Or use this QRcode: <img src="media/qrcode.svg" alt="QRC" id="qrcode-toggle"/> <div id="qrcode"></div></p>
 			</div>
 			<footer>
 				<p>Thanks for using <strong>Sloth-tt</strong>.</p>
-				<p><strong>Sloth-tt</strong> is powered by <a href="http://mootools.net" title="MooTools">MooTools</a> and <a href="http://epitome-mvc.github.io/Epitome/" title="Epitome - MVC">Epitome</a>.</p>
+				<p><strong>Sloth-tt</strong> is powered by <a href="http://mootools.net" title="A compact Javascript framework">MooTools</a>, <a href="http://epitome-mvc.github.io/Epitome/" title="Epitome - MVC built on MooTools">Epitome</a> and <a href="https://davidshimjs.github.io/qrcodejs/" title="Cross-browser QRCode generator for javascript">qrcode.js</a>.</p>
 				<p>Copyright &copy; 2016 mastro-elfo.</p>
 			</footer>
 		</div>
