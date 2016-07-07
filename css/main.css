@@ -55,6 +55,10 @@ header > h1 {
   white-space: nowrap;
 }
 
+#timer-title{
+	clear: both;
+}
+
 /* view by page */
 #maincontainer > header > h1,
 #maincontainer > div.main{
