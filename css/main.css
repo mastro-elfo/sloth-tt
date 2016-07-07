@@ -39,9 +39,11 @@ header > .button {
 header > .button.left {
 	float: left;
 }
-#open-info > span {
-  font-family: monospace;
+header > .button > img {
+	height: 70%;
+  margin-top: 15%
 }
+
 #open-create {
 	font-weight: bold;
 }
@@ -295,6 +297,7 @@ footer p {
 	width: 100%;
   box-sizing: border-box;
 }
+
 
 
 
