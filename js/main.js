@@ -10,17 +10,18 @@
 		var timerView = new window.MVC.View({
 			model: timer,
 			element: 'timer-timer',
-			template: '',
 			onRender: function(){
-				var year = +this.model.get('year');
-				var month = (+this.model.get('month') -1) || 0;
-				var day = +this.model.get('day') || 0;
-				var hour = +this.model.get('hour') || 0;
-				var minute = +this.model.get('minute') || 0;
-				var second = +this.model.get('second') || 0;
-				
-				if(year !== null) {
-					var delta = (+new Date(year, month, day, hour, minute, second) -new Date()) /1000;
+				if(this.model.get('set')) {
+					var year	= +this.model.get('year');
+					var month	= +this.model.get('month') -1;
+					var day		= +this.model.get('day');
+					var hour	= +this.model.get('hour');
+					var minute	= +this.model.get('minute');
+					var second	= +this.model.get('second');
+					
+					var now = new Date();
+					
+					var delta = (+new Date(year, month, day, hour, minute, second) -now) /1000;
 					var expired = false;
 					
 					if(delta < 0) {
@@ -53,9 +54,9 @@
 		});
 		
 		// Re-render each second
-		setInterval(function(){
-			timerView.render();
-		}, 1000);
+		//setInterval(function(){
+		//	timerView.render();
+		//}, 1000);
 		
 		// Title view
 		new window.MVC.View({
@@ -91,11 +92,13 @@
 			}
 		});
 		
+		var linkTemplate = '#!timer/<%=titleURI%>/<%=timerColor%>/<%=setYear%>/<%=setMonth%>/<%=setDay%>/<%=setHour%>/<%=setMinute%>/<%=setSecond%>';
+		
 		// Create output link
 		new window.MVC.Create({
 			model: timer,
 			element: 'create-output',
-			template: location.href.replace(/#.*$/, '')+'#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
+			template: location.href.replace(/#.*$/, '')+linkTemplate,
 			onRender: function(){
 				this.element.set('value', this.template(this.model.toJSON()));
 			}
@@ -105,7 +108,7 @@
 		new window.MVC.Create({
 			model: timer,
 			element: 'open-created-link',
-			template: '#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
+			template: linkTemplate,
 			onRender: function(){
 				this.element.set('href', this.template(this.model.toJSON()));
 			},
@@ -118,7 +121,7 @@
 		new window.MVC.Create({
 			model: timer,
 			element: 'share-link',
-			template: location.href.replace(/#.*$/, '')+'#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
+			template: location.href.replace(/#.*$/, '')+linkTemplate,
 			onRender: function(){
 				this.element.set('value', this.template(this.model.toJSON()));
 			},
@@ -131,7 +134,7 @@
 		new window.MVC.Create({
 			model: timer,
 			element: 'back-to-timer',
-			template: '#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
+			template: linkTemplate,
 			onRender: function(){
 				this.element.set('href', this.template(this.model.toJSON()));
 			},
@@ -144,7 +147,7 @@
 		new window.MVC.Create({
 			model: timer,
 			element: 'qrcode',
-			template: location.href.replace(/#.*$/, '')+'#!timer/<%=titleURI%>/<%=timerColor%>/<%=year%>/<%=month%>/<%=day%>/<%=hour%>/<%=minute%>/<%=second%>',
+			template: location.href.replace(/#.*$/, '')+linkTemplate,
 			onRender: function(){
 				this.timeout && clearTimeout(this.timeout);
 				var self = this;
@@ -220,13 +223,14 @@
 			onTimerDate: function(title, timerColor, year, month, day) {
 				// Update timer
 				timer.set({
+					set: true,
 					title: decodeURIComponent(title),
-					year: year,
-					month: month,
-					day: day,
-					hour: 0,
-					minute: 0,
-					second: 0,
+					setYear: year,
+					setMonth: month,
+					setDay: day,
+					setHour: 0,
+					setMinute: 0,
+					setSecond: 0,
 					timerColor: timerColor
 				});
 				// Update color picker
@@ -247,13 +251,14 @@
 			onTimerDateTime: function(title, timerColor, year, month, day, hour, minute, second) {
 				// Update timer
 				timer.set({
+					set: true,
 					title: decodeURIComponent(title),
-					year: year,
-					month: month,
-					day: day,
-					hour: hour,
-					minute: minute,
-					second: second,
+					setYear: year,
+					setMonth: month,
+					setDay: day,
+					setHour: hour,
+					setMinute: minute,
+					setSecond: second,
 					timerColor: timerColor
 				});
 				// Update color picker
@@ -281,10 +286,10 @@
 	});
 })();
 
-(function(){
-	window.addEvent('domready', function(){
-		var now = new Date();
-		var year = +now.getFullYear()+(now.getMonth()>9?1:0);
-		$('next-halloween').set('href', '#!timer/Halloween '+year+'&#128123;&#128123;/#333333/'+(year)+'/10/31/0/0/0');
-	});
-})();
+//(function(){
+//	window.addEvent('domready', function(){
+//		var now = new Date();
+//		var year = +now.getFullYear()+(now.getMonth()>9?1:0);
+//		$('next-halloween').set('href', '#!timer/Halloween '+year+'&#128123;&#128123;/#333333/'+(year)+'/10/31/0/0/0');
+//	});
+//})();
