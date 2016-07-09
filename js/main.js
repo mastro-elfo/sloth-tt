@@ -61,8 +61,8 @@
 		new window.MVC.View({
 			model: timer,
 			element: 'timer-title',
-			template: '<%=title%>',
 			onRender: function(){
+				this.element.set('html', this.template(this.model.toJSON(), this.model.get('title')));
 				this.element.setStyle('color', this.model.get('timerColor'));
 			}
 		});
@@ -71,7 +71,9 @@
 		new window.MVC.View({
 			model: timer,
 			element: document.getElement('title'),
-			template: 'Sloth-tt: <%=title%>'
+			onRender: function(){
+				this.element.set('html', 'Sloth-tt: ' +this.template(this.model.toJSON(), this.model.get('title')));
+			}
 		});
 		
 		// Create title view
