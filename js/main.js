@@ -286,4 +286,3 @@
 		$('next-halloween').set('href', '#!timer/Halloween '+year+'&#128123;&#128123;/#333333/'+(year)+'/10/31/0/0/0');
 	});
 })();
-
