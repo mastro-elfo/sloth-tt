@@ -223,7 +223,7 @@
 				}, 500);
 			},
 			onReady: function(){
-				location.href.replace(/#.*$/, '')+this.linkTemplate;
+				this.options.template = location.href.replace(/#.*$/, '')+this.linkTemplate;
 				
 				var self = this;
 				this.listenTo(this.model, 'change:uri', function(){
