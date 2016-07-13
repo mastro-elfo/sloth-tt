@@ -205,7 +205,7 @@
 		new window.MVC.BaseView({
 			model: timer,
 			element: 'qrcode',
-			template: location.href.replace(/#.*$/, '')+this.linkTemplate,
+			template: '',
 			onRender: function(){
 				this.timeout && clearTimeout(this.timeout);
 				var self = this;
@@ -223,6 +223,8 @@
 				}, 500);
 			},
 			onReady: function(){
+				location.href.replace(/#.*$/, '')+this.linkTemplate;
+				
 				var self = this;
 				this.listenTo(this.model, 'change:uri', function(){
 					self.render();
