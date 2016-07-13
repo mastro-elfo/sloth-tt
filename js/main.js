@@ -205,7 +205,7 @@
 		new window.MVC.BaseView({
 			model: timer,
 			element: 'qrcode',
-			template: '',
+			template: location.href.replace(/#.*$/, '')+'#!timer/<%=titleURI%>/<%=timerColor%>/<%=setYear%>/<%=setMonth%>/<%=setDay%>/<%=setHour%>/<%=setMinute%>/<%=setSecond%>',
 			onRender: function(){
 				this.timeout && clearTimeout(this.timeout);
 				var self = this;
@@ -223,8 +223,6 @@
 				}, 500);
 			},
 			onReady: function(){
-				this.options.template = location.href.replace(/#.*$/, '')+this.linkTemplate;
-				
 				var self = this;
 				this.listenTo(this.model, 'change:uri', function(){
 					self.render();
