@@ -60,8 +60,6 @@
 							dateTime[i] = +self.getDateTimeValue(i, setDateTime[i], now, false);
 						}
 						
-						console.log(dateTime)
-						
 						var expired = (+new Date(dateTime.year, dateTime.month, dateTime.day, dateTime.hour, dateTime.minute, dateTime.second) < now);
 						
 						if(self.isKeyword(setDateTime.second) && expired) {
@@ -96,10 +94,6 @@
 						
 						var refDateTime = new Date(dateTime.year, dateTime.month, dateTime.day, dateTime.hour, dateTime.minute, dateTime.second);
 						var dateTimeDiff = new Date(Math.abs((+refDateTime) - (+now)));
-						
-						//console.log('refDateTime : '+refDateTime);
-						//console.log('now         : '+now);
-						//console.log('dateTimeDiff: '+dateTimeDiff+' ['+((+refDateTime) - (+now))+']');
 						
 						self.set({
 							'year': self.getDate('year', refDateTime),
