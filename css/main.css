@@ -44,15 +44,15 @@ header > .button > img {
   margin-top: 15%
 }
 
-#open-create {
+#open-edit {
 	font-weight: bold;
 }
 
 header > h1 {
 	font-size: inherit;
-  text-overflow: ellipsis;
+  /*text-overflow: ellipsis;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: nowrap;*/
 }
 
 #timer-title{
@@ -68,8 +68,8 @@ header > h1 {
 #maincontainer[data-page="timer"] #timer{
 	display: block;
 }
-#maincontainer[data-page="create"] #create-title,
-#maincontainer[data-page="create"] #create{
+#maincontainer[data-page="edit"] #edit-title,
+#maincontainer[data-page="edit"] #edit{
 	display: block;
 }
 
@@ -77,7 +77,7 @@ header > h1 {
 	opacity: 0;
 }
 
-#maincontainer[data-page="create"] #open-create {
+#maincontainer[data-page="edit"] #open-edit {
 	opacity: 0;
 }
 
@@ -118,33 +118,33 @@ header > h1 {
   	font-size: 2.0em;
 	}
 }
-#create ul {
+#edit ul {
 	list-style: none;
   padding: 0;
   margin: 0;
 }
 
-#create ul.list {
+#edit ul.list {
   list-style: initial;
   padding: 0 0 0 1em;
 }
 
-#create li {
+#edit li {
 	clear: both;
 }
 
-#create label {
+#edit label {
   display: block;
   padding: 1em 1em 0;
   line-height: 2em;
   
 }
 
-#create label span {
+#edit label span {
   display: block;
 }
 
-#create input {
+#edit input {
 	display: block;
   width: 100%;
   box-sizing: border-box;

@@ -3,87 +3,117 @@
 	'use strict';
 	
 	window.addEvent('domready', function(){
-		// Timer model
+		var EDIT_VIEW = false;
+		
 		var timer = new window.MVC.Timer();
 		
-		// Timer view
-		var timerView = new window.MVC.View({
-			model: timer,
-			element: 'timer-timer',
-			onRender: function(){
-				if(this.model.get('set')) {
-					var year	= +this.model.get('year');
-					var month	= +this.model.get('month') -1;
-					var day		= +this.model.get('day');
-					var hour	= +this.model.get('hour');
-					var minute	= +this.model.get('minute');
-					var second	= +this.model.get('second');
-					
-					var now = new Date();
-					
-					var delta = (+new Date(year, month, day, hour, minute, second) -now) /1000;
-					var expired = false;
-					
-					if(delta < 0) {
-						delta = -delta;
-						expired = true;
-					}
-					
-					var days = Math.floor(delta /86400);
-					delta -= days *86400;
-					
-					var hours = Math.floor(delta /3600);
-					delta -= hours *3600;
-					
-					var minutes = Math.floor(delta /60);
-					delta -= minutes *60;
-					
-					var seconds = Math.floor(delta);
-					
-					this.element.set('html',
-									 (days ? days+'<span class="small">d</span> ' : '')+
-									 (days||hours ? (hours<10?'0':'')+hours+'<span class="small">h</span> ' : '')+
-									 (days||hours||minutes ? (minutes<10?'0':'')+minutes+'<span class="small">m</span> ' : '')+
-									 ((seconds<10?'0':'')+seconds+'<span class="small">s</span>')+
-									 (expired ? '<br/><span class="small">Expired</span>' : '')
-									);
-					
-					this.element.setStyle('color', this.model.get('timerColor'));
-				}
-			}
-		});
-		
-		// Re-render each second
-		//setInterval(function(){
-		//	timerView.render();
-		//}, 1000);
-		
-		// Title view
-		new window.MVC.View({
+		// Timer title View
+		new window.MVC.BaseView({
 			model: timer,
 			element: 'timer-title',
+			template: '',
+			onReady: function(){
+				var self = this;
+				this.listenTo(this.model, 'change:trigger', function(){
+					self.options.template = self.model.get('title');
+					self.render();
+				});
+				this.render();
+			},
 			onRender: function(){
-				this.element.set('html', this.template(this.model.toJSON(), this.model.get('title')));
 				this.element.setStyle('color', this.model.get('timerColor'));
 			}
 		});
 		
-		// Document title view
-		new window.MVC.View({
+		new window.MVC.BaseView({
 			model: timer,
-			element: document.getElement('title'),
+			element: 'timer-timer',
+			onReady: function(){
+				var self = this;
+				this.listenTo(this.model, 'change:timerColor', function(){
+					self.render();
+				});
+			},
 			onRender: function(){
-				this.element.set('html', 'Sloth-tt: ' +this.template(this.model.toJSON(), this.model.get('title')));
+				this.element.setStyle('color', this.model.get('timerColor'));
 			}
 		});
 		
-		// Create title view
-		new window.MVC.Create({
+		// Timer Views
+		// Years
+		new window.MVC.TimerView({
 			model: timer,
-			element: 'create-title-value',
-			onRender: function(){
-				this.element.set('value', this.model.get('title')/*.trim()*/);
-			},
+			element: 'timer-years',
+			param: 'yearDiff',
+			mu: 'Y',
+			getRender: function(){
+				return +this.model.get('yearDiff') != 0;
+			}
+		});
+		// Months
+		new window.MVC.TimerView({
+			model: timer,
+			element: 'timer-months',
+			param: 'monthDiff',
+			mu: 'M',
+			getRender: function(){
+				return +this.model.get('yearDiff') != 0 || +this.model.get('monthDiff') != 0;
+			}
+		});
+		// Days
+		new window.MVC.TimerView({
+			model: timer,
+			element: 'timer-days',
+			param: 'dayDiff',
+			mu: 'd',
+			getRender: function(){
+				return +this.model.get('yearDiff') != 0 || +this.model.get('monthDiff') != 0 || +this.model.get('dayDiff') != 0;
+			}
+		});
+		// Hours
+		new window.MVC.TimerView({
+			model: timer,
+			element: 'timer-hours',
+			param: 'hourDiff',
+			mu: 'h',
+			getRender: function(){
+				return +this.model.get('yearDiff') != 0 || +this.model.get('monthDiff') != 0 || +this.model.get('dayDiff') != 0 || +this.model.get('hourDiff') != 0;
+			}
+		});
+		// Minutes
+		new window.MVC.TimerView({
+			model: timer,
+			element: 'timer-minutes',
+			param: 'minuteDiff',
+			mu: 'm',
+			getRender: function(){
+				return +this.model.get('yearDiff') != 0 || +this.model.get('monthDiff') != 0 || +this.model.get('dayDiff') != 0 || +this.model.get('hourDiff') != 0 || +this.model.get('minuteDiff') != 0;
+			}
+		});
+		// Seconds
+		new window.MVC.TimerView({
+			model: timer,
+			element: 'timer-seconds',
+			param: 'secondDiff',
+			mu: 's'
+		});
+		// Expired
+		new window.MVC.BaseView({
+			model: timer,
+			element: 'timer-expired',
+			template: '<span class="small"> <% if(expired) {print(\'Expired\');} else {print(\'\');} %> </span>',
+			onReady: function(){
+				var self = this;
+				this.listenTo(this.model, 'change:expired', function(){self.render();});
+			}
+		});
+		
+		// Edit title view
+		new window.MVC.BaseView({
+			model: timer,
+			element: 'edit-title-value',
+			property: 'value',
+			template: '<%=title%>',
 			events: {
 				'keyup': 'update'
 			},
@@ -92,62 +122,90 @@
 			}
 		});
 		
-		var linkTemplate = '#!timer/<%=titleURI%>/<%=timerColor%>/<%=setYear%>/<%=setMonth%>/<%=setDay%>/<%=setHour%>/<%=setMinute%>/<%=setSecond%>';
-		
-		// Create output link
-		new window.MVC.Create({
-			model: timer,
-			element: 'create-output',
-			template: location.href.replace(/#.*$/, '')+linkTemplate,
-			onRender: function(){
-				this.element.set('value', this.template(this.model.toJSON()));
+		// Date Timer Color Picker
+		var datePicker = new window.Datepicker('date-picker', {
+			year: null,
+			month: null,
+			day: null,
+			onSelect: function(){
+				timer.set('setYear', +this.get('year'));
+				timer.set('setMonth', +this.get('month'));
+				timer.set('setDay', +this.get('day'));
 			}
 		});
 		
-		// Link
-		new window.MVC.Create({
-			model: timer,
-			element: 'open-created-link',
-			template: linkTemplate,
-			onRender: function(){
-				this.element.set('href', this.template(this.model.toJSON()));
-			},
-			onReady: function(){
-				this.render();
+		var timePicker = new window.Timepicker('time-picker', {
+			hour: null,
+			minute: null,
+			onSelect: function(){
+				timer.set('setHour', +this.get('hour'));
+				timer.set('setMinute', +this.get('minute'));
 			}
 		});
 		
-		// Share link
-		new window.MVC.Create({
-			model: timer,
-			element: 'share-link',
-			template: location.href.replace(/#.*$/, '')+linkTemplate,
-			onRender: function(){
-				this.element.set('value', this.template(this.model.toJSON()));
-			},
-			onReady: function(){
-				this.render();
+		var colorPicker = new window.Colorpicker('color-picker', {
+			color: '#333333',
+			colors: ['#333333', '#B2B2B2', '#E54C4C', '#E5994C', '#C5C539', '#52C552', '#39C5C5', '#6666CC', '#C539C5', ],
+			onSelect: function(){
+				timer.set('timerColor', this.get('color'));
 			}
 		});
 		
-		// Back to timer
-		new window.MVC.Create({
+		timer.listenTo(timer, 'change:year', function(){
+			if(!EDIT_VIEW) {
+				datePicker.set('year', timer.get('year'));
+			}
+		});
+		timer.listenTo(timer, 'change:month', function(){
+			if(!EDIT_VIEW) {
+				datePicker.set('month', timer.get('month'));
+			}
+		});
+		timer.listenTo(timer, 'change:day', function(){
+			if(!EDIT_VIEW) {
+				datePicker.set('day', timer.get('day'));
+			}
+		});
+		timer.listenTo(timer, 'change:hour', function(){
+			if(!EDIT_VIEW) {
+				timePicker.set('hour', timer.get('hour'));
+			}
+		});
+		timer.listenTo(timer, 'change:minute', function(){
+			if(!EDIT_VIEW) {
+				timePicker.set('minute', timer.get('minute'));
+			}
+		});
+		timer.listenTo(timer, 'change:timerColor', function(){
+			if(!EDIT_VIEW) {
+				colorPicker.set('color', timer.get('timerColor'));
+			}
+		});
+		
+		// Document title
+		new window.MVC.BaseView({
 			model: timer,
-			element: 'back-to-timer',
-			template: linkTemplate,
+			element: document.getElement('title'),
 			onRender: function(){
-				this.element.set('href', this.template(this.model.toJSON()));
+				this.element.set('html', 'Sloth-tt: ' +this.template(this.model.toJSON(), this.model.get('title')));
 			},
 			onReady: function(){
+				var self = this;
+				this.listenTo(this.model, 'change:title', function(){
+					self.render();
+				});
+				this.listenTo(this.model, 'change:trigger', function(){
+					self.render();
+				});
 				this.render();
 			}
 		});
 		
 		// QRCode
-		new window.MVC.Create({
+		new window.MVC.BaseView({
 			model: timer,
 			element: 'qrcode',
-			template: location.href.replace(/#.*$/, '')+linkTemplate,
+			template: location.href.replace(/#.*$/, '')+this.linkTemplate,
 			onRender: function(){
 				this.timeout && clearTimeout(this.timeout);
 				var self = this;
@@ -165,11 +223,17 @@
 				}, 500);
 			},
 			onReady: function(){
-				this.render();
+				var self = this;
+				this.listenTo(this.model, 'change:uri', function(){
+					self.render();
+				});
+				
 				var self = this;
 				$('qrcode-toggle').addEvent('click', function(){
 					self.element.addClass('open');
 				});
+				
+				this.render();
 			},
 			events: {
 				'click': 'close'
@@ -179,117 +243,65 @@
 			}
 		});
 		
-		var datePicker = new window.Datepicker('date-picker', {
-			year: null,
-			month: null,
-			day: null,
-			onSelect: function(){
-				timer.set('year', +this.get('year'));
-				timer.set('month', +this.get('month') +1);
-				timer.set('day', +this.get('day'));
-			}
+		// Back to timer button
+		new window.MVC.LinkView ({
+			model: timer,
+			element: 'back-to-timer',
+			property: 'href'
 		});
 		
-		var timePicker = new window.Timepicker('time-picker', {
-			hour: null,
-			minute: null,
-			onSelect: function(){
-				timer.set('hour', +this.get('hour'));
-				timer.set('minute', +this.get('minute'));
-			}
+		// Open timer link
+		new window.MVC.LinkView ({
+			model: timer,
+			element: 'open-edit-link',
+			property: 'href'
 		});
 		
-		var colorPicker = new window.Colorpicker('color-picker', {
-			color: '#333333',
-			colors: ['#333333', '#B2B2B2', '#E54C4C', '#E5994C', '#C5C539', '#52C552', '#39C5C5', '#6666CC', '#C539C5', ],
-			onSelect: function(){
-				timer.set('timerColor', this.get('color'));
-			}
+		// Edit output
+		new window.MVC.LinkView ({
+			model: timer,
+			element: 'edit-output',
+			property: 'value'
+		});
+		
+		// Share link
+		new window.MVC.LinkView ({
+			model: timer,
+			element: 'share-link',
+			property: 'value'
 		});
 		
 		// Router
 		new Epitome.Router({
 			routes: {
-				'#!create': 'create',
-				'#!timer/:title/:timerColor/:year/:month/:day/:hour/:minute/:second': 'timerDateTime',
-				'#!timer/:title/:timerColor/:year/:month/:day/': 'timerDate'
+				'#!edit': 'edit',
+				'#!timer/:title/:timerColor/:year/:month/:day/:hour/:minute/:second': 'timer'
 			},
 			onUndefined: function(){
-				location.href = '#!create'
+				location.href = '#!edit'
 			},
-			onCreate: function(){
-				$('maincontainer').set('data-page', 'create');
+			onEdit: function(){
+				$('maincontainer').set('data-page', 'edit');
+				EDIT_VIEW = true;
 			},
-			onTimerDate: function(title, timerColor, year, month, day) {
-				// Update timer
+			onTimer: function(title, timerColor, year, month, day, hour, minute, second) {
+				if(!isNaN(+month)) {
+					month = +month -1;
+				}
 				timer.set({
-					set: true,
 					title: decodeURIComponent(title),
-					setYear: year,
-					setMonth: month,
-					setDay: day,
-					setHour: 0,
-					setMinute: 0,
-					setSecond: 0,
-					timerColor: timerColor
-				});
-				// Update color picker
-				colorPicker.setOptions({
-					'color': timerColor
-				});
-				colorPicker.render();
-				// Update date picker
-				datePicker.setOptions({
-					'year': year,
-					'month': month -1,
-					'day': day
-				});
-				datePicker.render();
-				// Set visible page
-				$('maincontainer').set('data-page', 'timer');
-			},
-			onTimerDateTime: function(title, timerColor, year, month, day, hour, minute, second) {
-				// Update timer
-				timer.set({
-					set: true,
-					title: decodeURIComponent(title),
+					timerColor: timerColor,
 					setYear: year,
 					setMonth: month,
 					setDay: day,
 					setHour: hour,
 					setMinute: minute,
 					setSecond: second,
-					timerColor: timerColor
+					set: true
 				});
-				// Update color picker
-				colorPicker.setOptions({
-					'color': timerColor
-				});
-				colorPicker.render();
-				// Update date picker
-				datePicker.setOptions({
-					'year': year,
-					'month': month -1,
-					'day': day
-				});
-				datePicker.render();
-				// Update time picker
-				timePicker.setOptions({
-					'hour': hour,
-					'minute': minute
-				});
-				timePicker.render();
-				// Set visible page
 				$('maincontainer').set('data-page', 'timer');
+				EDIT_VIEW = false;
 			}
 		});
 	});
 })();
-
-//(function(){
-//	window.addEvent('domready', function(){
-//		var now = new Date();
-//		var year = +now.getFullYear()+(now.getMonth()>9?1:0);
-//		$('next-halloween').set('href', '#!timer/Halloween '+year+'&#128123;&#128123;/#333333/'+(year)+'/10/31/0/0/0');
-//	});
-//})();
