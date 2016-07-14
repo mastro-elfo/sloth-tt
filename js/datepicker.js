@@ -10,7 +10,7 @@
 			day: null,
 			onChange: function(){
 				this.render();
-				// this.fireEvent('select');
+				this.fireEvent('select');
 			}
 		},
 		initialize: function(element, options) {
@@ -21,9 +21,9 @@
 			if(this.options.year === null) {
 				var d = new Date();
 				this.setOptions({
-					year: d.getUTCFullYear(),
-					month: d.getUTCMonth(),
-					day: d.getUTCDate()
+					year: d.getFullYear(),
+					month: d.getMonth(),
+					day: d.getDate()
 				});
 			}
 			
@@ -98,13 +98,12 @@
 						self.set('year', match[1]);
 						self.set('month', match[2]);
 						self.set('day', match[3]);
-						self.fireEvent('select');
 					}).inject(week);
 				}
 			}
 			
 			this.render();
-			//this.fireEvent('select');
+			this.fireEvent('select');
 		},
 		set: function(what, value) {
 			if(this.options[what] != value) {

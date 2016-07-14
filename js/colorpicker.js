@@ -10,7 +10,7 @@
 			colors: [],
 			onChange: function(){
 				this.render();
-				// this.fireEvent('select');
+				this.fireEvent('select');
 			}
 		},
 		
@@ -31,13 +31,12 @@
 				})
 				.addEvent('click', function(){
 					self.set('color', color);
-					self.fireEvent('select');
 				})
 				.inject(self.element);
 			});
 			
 			this.render();
-			// this.fireEvent('select');
+			this.fireEvent('select');
 		},
 		set: function(what, value) {
 			if(this.options[what] != value) {
