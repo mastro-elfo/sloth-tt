@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html manifest="manifest.appcache">
+<html lang="en-US">
 	<head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+		<meta name="application-name" content="Sloth-tt"/>
+		<meta name="author" content="mastro-elfo (Francesco Michienzi)"/>
+		<meta name="keywords" content="webapp,timer,time"/>
+		<meta name="description" content="Sloth-tt is an online webapp that let you define an endpoint and shows how much time il left, or from how long it is expired."/>
 		
 		<title>Sloth - tt</title>
 		
-		<link rel="icon" href="media/icon.128.png"/>
+		<link rel="icon" href="media/timer.svg"/>
 		
 		<link rel="stylesheet" href="css/main.css"/>
 		
-		<script type="text/javascript" src="lib/MooTools-Core-1.6.0.js"></script>
+		<script type="text/javascript" src="lib/MooTools-Core-1.6.0-compressed.js"></script>
 		<script type="text/javascript" src="lib/Epitome-min.js"></script>
+		<script type="text/javascript" src="lib/qrcode-min.js"></script>
 		<script type="text/javascript" src="js/datepicker.js"></script>
 		<script type="text/javascript" src="js/timepicker.js"></script>
 		<script type="text/javascript" src="js/colorpicker.js"></script>
@@ -21,17 +26,17 @@
 	<body>
 		<div id="maincontainer">
 			<header>
-				<a class="button left" href="" title="Back to timer" id="back-to-timer">&#9202;</a>
-				<a class="button" href="#!create" title="Create a new timer" id="open-create">&#9998;</a>
+				<a class="button left" href="" title="Back to timer" id="back-to-timer"><img alt="&#9202;" src="media/timer.svg"/></a>
+				<a class="button" href="#!edit" title="Edit a new timer" id="open-edit"><img alt="&#9998;" src="media/pencil.svg"/></a>
 				<h1 id="timer-title"></h1>
-				<h1 id="create-title">Create</h1>
+				<h1 id="edit-title">Edit</h1>
 			</header>
-			<div class="main" id="create">
+			<div class="main" id="edit">
 				<ul>
 					<li>
 						<label>
 							<span>Choose a beautiful title</span>
-							<input type="text" id="create-title-value"/>
+							<input type="text" required="required" id="edit-title-value"/>
 						</label>
 					</li>
 					<li>
@@ -50,18 +55,20 @@
 					<li>
 						<label>
 							<span>To share this timer copy and paste the following link&hellip;</span>
-							<input type="text" readonly="readonly" id="create-output"/>
-							<a href="" title="Open this timer" id="open-created-link">Open this timer</a>
+							<input type="text" readonly="readonly" id="edit-output"/>
+							<a href="" title="Open this timer" id="open-edit-link">Open this timer</a>
 						</label>
 					</li>
 					<li>
 						<label>
 							<span>&hellip; or try some predefined timers:</span>
 							<ul class="list">
-								<li><a href="#!timer/End of UNIX era/#E54C4C/2038/1/19/3/14/7" title="End of UNIX era">End of UNIX era</a></li>
-								<li><a href="" title="Next Halloween" id="next-halloween">Next Halloween</a></li>
-								<li><a href="#!timer/&bigstar;My Birth&bigstar;/#52C552/1984/9/20/19/15/00" title="This is my birth date">When I was born</a></li>
-								<li><a href="#!timer/Columbus dicovered America/#39C5C5/1492/10/3/0/0/0" title="Columbus dicovered America">Columbus dicovered America</a></li>
+								<li><a href="#!timer/End%20of%20UNIX%20era/#E54C4C/2038/1/19/3/14/7" title="End of UNIX era">End of UNIX era</a></li>
+								<li><a href="#!timer/Columbus dicovered America/#39C5C5/1492/10/12/2/0/0" title="Columbus dicovered America">Columbus dicovered America</a></li>
+								<li><a href="#!timer/%3C%25%3Dday%25%3E%2F%3C%25%3Dmonth%25%3E%2F%3C%25%3Dyear%25%3E/#52C552/this/this/this/0/0/0" title="This timer works like a clock">A clock</a></li>
+								<li><a href="#!timer/Expires%20at%208%20am%26hellip%3B/#C539C5/this/next/0/8/0/0" title="Expires at 8am on the last day of the current month...">The last day of a month</a></li>
+								<li><a href="#!timer/Halloween%20%3C%25%3Dyear%25%3E%20%F0%9F%91%BB%F0%9F%91%BB/#333333/next/10/31/0/0/0" title="Oh no! So much work to do and so few time!">Next Halloween</a></li>
+								<li><a href="#!timer/Next%20February%20the%2029th/#6666CC/2016%4/2/29/0/0/0" title="How many days until the next February the 29th?">Next February the 29th</a></li>
 							</ul>
 						</label>
 					</li>
@@ -69,14 +76,34 @@
 			</div>
 			<div class="main" id="timer">
 				<div id="timer-timer">
-					
+					<span id="timer-years"></span>
+					<span id="timer-months"></span>
+					<span id="timer-days"></span>
+					<span id="timer-hours"></span>
+					<span id="timer-minutes"></span>
+					<span id="timer-seconds"></span>
+					<span id="timer-expired"></span>
 				</div>
 				<p>To share this timer copy and paste the following link: <br/>
 				<input type="text" readonly="readonly" id="share-link"/></p>
+				<p>Or use this QRcode: <img src="media/qrcode.svg" alt="QRC" id="qrcode-toggle" title="Open the QRCode"/> <div id="qrcode"></div></p>
 			</div>
 			<footer>
+				<div id="advertising">
+					<script type="text/javascript">
+					/* <![CDATA[ */
+					google_color_border = "#eeeeee";
+					google_color_bg = "#eeeeee";
+					google_color_link = "#0033CC";
+					google_color_url = "#008000";
+					google_color_text = "#000000";
+					google_ui_features = "rc:0";
+					if(location.href.search('altervista') != -1) document.write('<s'+'cript type="text/javascript" src="http://ad.altervista.org/js.ad/size=728X90/?ref='+encodeURIComponent(location.hostname+location.pathname)+'&r='+new Date().getTime()+'"></s'+'cript>');
+					/* ]]> */
+					</script>
+				</div>
 				<p>Thanks for using <strong>Sloth-tt</strong>.</p>
-				<p><strong>Sloth-tt</strong> is powered by <a href="http://mootools.net" title="MooTools">MooTools</a> and <a href="http://epitome-mvc.github.io/Epitome/" title="Epitome - MVC">Epitome</a>.</p>
+				<p><strong>Sloth-tt</strong> is powered by <a href="http://mootools.net" title="A compact Javascript framework">MooTools</a>, <a href="http://epitome-mvc.github.io/Epitome/" title="Epitome - MVC built on MooTools">Epitome</a> and <a href="https://davidshimjs.github.io/qrcodejs/" title="Cross-browser QRCode generator for javascript">qrcode.js</a>.</p>
 				<p>Copyright &copy; 2016 mastro-elfo.</p>
 			</footer>
 		</div>
