@@ -10,7 +10,7 @@
 			minute: null,
 			onChange: function(){
 				this.render();
-				this.fireEvent('select');
+				// this.fireEvent('select');
 			}
 		},
 		
@@ -20,8 +20,8 @@
 			
 			if(this.options.hour === null) {
 				var d = new Date();
-				this.options.hour = d.getHours();
-				this.options.minute = d.getMinutes();
+				this.options.hour = d.getUTCHours();
+				this.options.minute = d.getUTCMinutes();
 			}
 			
 			var self = this;
@@ -37,6 +37,7 @@
 				self.options.hour < 23 ?
 					self.set('hour', +self.options.hour +1) :
 					self.set('hour', 0);
+				self.fireEvent('select');
 			}).inject(hour);
 			
 			new Element('input', {
@@ -52,6 +53,7 @@
 				self.options.hour > 0 ?
 					self.set('hour', +self.options.hour -1) :
 					self.set('hour', 23);
+				self.fireEvent('select');
 			}).inject(hour);
 			
 			var minute = new Element('div', {
@@ -65,6 +67,7 @@
 				self.options.minute < 59 ?
 					self.set('minute', +self.options.minute +1) :
 					self.set('minute', 0);
+				self.fireEvent('select');
 			}).inject(minute);
 			
 			new Element('input', {
@@ -80,10 +83,11 @@
 				self.options.minute > 0 ?
 					self.set('minute', +self.options.minute -1) :
 					self.set('minute', 59);
+				self.fireEvent('select');
 			}).inject(minute);
 			
 			this.render();
-			this.fireEvent('select');
+			//this.fireEvent('select');
 		},
 		set: function(what, value) {
 			if(this.options[what] != value) {
@@ -96,7 +100,7 @@
 		},
 		render: function(){
 			this.element.getElement('.timepicker-hourvalue').set('value', this.options.hour);
-			this.element.getElement('.timepicker-minutevalue').set('value', (this.options.minute<10?'0':'')+this.options.minute);
+			this.element.getElement('.timepicker-minutevalue').set('value', (+this.options.minute<10?'0':'')+(+this.options.minute));
 		}
 	});
 	

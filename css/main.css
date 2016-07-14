@@ -1,308 +1,278 @@
 
 html {
-	font-family: arial, sans-serif;
-  letter-spacing: 0.1em;
-  color: #333;
-  background-color: #eee;
+    background-color: #eeeeee;
+    color: #333333;
+    font-family: arial,sans-serif;
+    letter-spacing: 0.1em;
 }
 body {
-	padding: 0;
-  margin: 0;
+    margin: 0;
+    padding: 0;
 }
-
 h1 {
-	margin: 0;
+    margin: 0;
 }
-
-*.small {
-	font-size: 50%;
+.small {
+    font-size: 50%;
 }
-
-/* header */
 header {
-  font-size: 2rem;
-  height: 2em;
-  line-height: 2em;
-  text-align: center;
-  color: #999;
+    color: #999999;
+    font-size: 2rem;
+    height: 2em;
+    line-height: 2em;
+    text-align: center;
 }
 header > .button {
-  font-size: 1.5em;
-	float: right;
-  display: block;
-  width: 1.333em;
-  height: 1.333em;
-  cursor: pointer;
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    display: block;
+    float: right;
+    font-size: 1.5em;
+    height: 1.333em;
+    text-decoration: none;
+    width: 1.333em;
 }
 header > .button.left {
-	float: left;
+    float: left;
 }
-#open-info > span {
-  font-family: monospace;
+header > .button > img {
+    height: 70%;
+    margin-top: 15%;
 }
-#open-create {
-	font-weight: bold;
+#open-edit {
+    font-weight: bold;
 }
-
 header > h1 {
-	font-size: inherit;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+    font-size: inherit;
 }
-
-/* view by page */
-#maincontainer > header > h1,
-#maincontainer > div.main{
-	display: none;
+#timer-title {
+    clear: both;
 }
-#maincontainer[data-page="timer"] #timer-title,
-#maincontainer[data-page="timer"] #timer{
-	display: block;
+#maincontainer > header > h1, #maincontainer > div.main {
+    display: none;
 }
-#maincontainer[data-page="create"] #create-title,
-#maincontainer[data-page="create"] #create{
-	display: block;
+#maincontainer[data-page="timer"] #timer-title, #maincontainer[data-page="timer"] #timer {
+    display: block;
 }
-
+#maincontainer[data-page="edit"] #edit-title, #maincontainer[data-page="edit"] #edit {
+    display: block;
+}
 #maincontainer[data-page="timer"] #back-to-timer {
-	opacity: 0;
+    opacity: 0;
 }
-
-#maincontainer[data-page="create"] #open-create {
-	opacity: 0;
+#maincontainer[data-page="edit"] #open-edit {
+    opacity: 0;
 }
-
-/* Timer */
 #timer-timer {
-	font-size: 5em;
-  text-align: center;
-  margin: 1em 0;
+    font-size: 5em;
+    margin: 1em 0;
+    text-align: center;
 }
-
 @media (max-width: 550px) {
-	#timer-timer {
-  	font-size: 4.5em;
-	}
+#timer-timer {
+    font-size: 4.5em;
+}
 }
 @media (max-width: 500px) {
-	#timer-timer {
-  	font-size: 4.0em;
-	}
+#timer-timer {
+    font-size: 4em;
+}
 }
 @media (max-width: 450px) {
-	#timer-timer {
-  	font-size: 3.5em;
-	}
+#timer-timer {
+    font-size: 3.5em;
+}
 }
 @media (max-width: 400px) {
-	#timer-timer {
-  	font-size: 3.0em;
-	}
+#timer-timer {
+    font-size: 3em;
+}
 }
 @media (max-width: 350px) {
-	#timer-timer {
-  	font-size: 2.5em;
-	}
+#timer-timer {
+    font-size: 2.5em;
+}
 }
 @media (max-width: 300px) {
-	#timer-timer {
-  	font-size: 2.0em;
-	}
+#timer-timer {
+    font-size: 2em;
 }
-#create ul {
-	list-style: none;
-  padding: 0;
-  margin: 0;
 }
-
-#create ul.list {
-  list-style: initial;
-  padding: 0 0 0 1em;
+#edit ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
 }
-
-#create li {
-	clear: both;
+#edit ul.list {
+    list-style: initial;
+    padding: 0 0 0 1em;
 }
-
-#create label {
-  display: block;
-  padding: 1em 1em 0;
-  line-height: 2em;
-  
+#edit li {
+    clear: both;
 }
-
-#create label span {
-  display: block;
+#edit label {
+    display: block;
+    line-height: 2em;
+    padding: 1em 1em 0;
 }
-
-#create input {
-	display: block;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: inherit;
-  line-height: inherit;
+#edit label span {
+    display: block;
 }
-
-div.main h1,
-div.main p {
-	padding: 0 1em;
+#edit input {
+    box-sizing: border-box;
+    display: block;
+    font-size: inherit;
+    line-height: inherit;
+    width: 100%;
 }
-
+div.main h1, div.main p {
+    padding: 0 1em;
+}
 footer {
-  font-size: 75%;
+    font-size: 75%;
 }
-
 footer p {
-	padding: 0 1em;
+    padding: 0 1em;
 }
-
-/* date picker */
 #date-picker {
-	background-color: #ddd;
+    background-color: #dddddd;
 }
-
 #date-picker .datepicker-body {
-	height: 6em;
+    height: 8.1em;
 }
-
 #date-picker .datepicker-header {
-	height: 1em;
+    height: 1em;
 }
-
 #date-picker .datepicker-header > div {
-	float: left;
+    float: left;
 }
-
-#date-picker .datepicker-header .datepicker-leftarrow,
-#date-picker .datepicker-header .datepicker-rightarrow {
-	width: 20%;
+#date-picker .datepicker-header .datepicker-leftarrow, #date-picker .datepicker-header .datepicker-rightarrow {
+    width: 20%;
 }
-
 #date-picker .datepicker-header .datepicker-title {
-	width: 60%;
+    width: 60%;
 }
-
-#date-picker .datepicker-header .datepicker-leftarrow,
-#date-picker .datepicker-header .datepicker-rightarrow,
-#date-picker .datepicker-header .datepicker-title {
-	text-align: center;
-  cursor: pointer;
+#date-picker .datepicker-header .datepicker-leftarrow, #date-picker .datepicker-header .datepicker-rightarrow, #date-picker .datepicker-header .datepicker-title {
+    cursor: pointer;
+    text-align: center;
 }
-
 #date-picker .datepicker-week {
-	clear: both;
+    clear: both;
 }
-
 #date-picker .datepicker-day {
-	float: left;
-  font-size: 0.9em;
-  height: 1.1em;
-  line-height: 1.1em;
-  width: 14.2%;
-  text-align: center;
-  cursor: pointer;
+    cursor: pointer;
+    float: left;
+    font-size: 0.9em;
+    height: 1.5em;
+    line-height: 1.5em;
+    text-align: center;
+    width: 14.2%;
 }
-
 #date-picker .datepicker-othermonth {
-	color: #ccc;
+    color: #cccccc;
 }
-
 #date-picker .datepicker-dayselected {
-	color: red;
+    color: #ff0000;
 }
-
-/* time picker */
 #time-picker {
-	position: relative;
+    position: relative;
 }
-
 #time-picker .timepicker-block {
-  width: 42%;
-  float: left;
-  margin-left: 6%;
-  text-align: center;
+    float: left;
+    margin-left: 6%;
+    text-align: center;
+    width: 42%;
 }
-
-#time-picker .timepicker-plus,
-#time-picker .timepicker-minus,
+#time-picker .timepicker-plus, #time-picker .timepicker-minus, #time-picker .timepicker-value {
+    cursor: pointer;
+    font-size: 2em;
+    height: 1.2em;
+    line-height: 1.2em;
+}
+#time-picker .timepicker-plus, #time-picker .timepicker-minus {
+    height: 2em;
+    line-height: 2em;
+}
 #time-picker .timepicker-value {
-  font-size: 2em;
-	height: 1.334em;
-  line-height: 1.334em;
-  cursor: pointer;
+    background-color: #ffffff;
+    border: medium none;
+    border-radius: 0.2em;
+    text-align: center;
 }
-
-#time-picker .timepicker-value {
-	background-color: #fff;
-  border-radius: 0.2em;
-  border: none;
-  text-align: center;
-}
-
-/* date and time picker */
-#date-picker,
-#time-picker{
-  position: relative;
-  font-size: 1.2em;
+#date-picker, #time-picker {
+    font-size: 1.2em;
+    padding: 1%;
+    position: relative;
 }
 @media (orientation: landscape) {
-  #date-picker,
-  #time-picker{
-    width: 40%;
+#date-picker, #time-picker {
     float: left;
     margin: 1em 5%;
-  }
+    width: 38%;
+}
 }
 @media (orientation: portrait) {
-  #date-picker,
-  #time-picker{}
+#date-picker, #time-picker {
+    width: 98%;
 }
-
-/* Color picker */
+}
 #color-picker {
-	padding: 1em;
+    padding: 1em;
 }
-
 #color-picker .colorpicker-color {
-  font-size: 2em;
-	width: 1em;
-  height: 1em;
-  float: left;
-  margin: 0 1em 1em 0;
-  border-radius: 0.2em;
-  cursor: pointer;
-  position: relative;
+    border-radius: 0.2em;
+    cursor: pointer;
+    float: left;
+    font-size: 2em;
+    height: 1em;
+    margin: 0 1em 1em 0;
+    position: relative;
+    width: 1em;
 }
-
-#color-picker .colorpicker-color.selected:after {
-	content: "\2713";
-  color: #eee;
-  text-align: center;
-  display: block;
-  width: 100%;
-  height: 100%;
-  outline: 1px solid;
-  position: absolute;
-  top: 0;
-  left: 0;
+#color-picker .colorpicker-color.selected::after {
+    color: #eeeeee;
+    content: "✓";
+    display: block;
+    height: 100%;
+    left: 0;
+    outline: 1px solid;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
 }
-
-/* Share link */
 #share-link {
-	width: 100%;
-  box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
 }
-
-
-
-
-
-
-
-
-
-
-
+#qrcode-toggle {
+    cursor: pointer;
+    height: 1em;
+}
+#qrcode {
+    cursor: pointer;
+    display: none;
+}
+#qrcode.open {
+    border: 16px solid #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 0 16px #000000;
+    display: block;
+    left: 50%;
+    margin-left: -136px;
+    margin-top: -136px;
+    position: fixed;
+    top: 50%;
+}
+#qrcode.open::after {
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+#advertising {
+    text-align: center;
+}
