@@ -5,7 +5,7 @@ HTML countdown timer
 
 # Credits
 
-*Sloth-tt* is powered by [MooTools](http://mootools.net "A compact Javascript framework"), [Epitome](http://epitome-mvc.github.io/Epitome/ "Epitome - MVC built on MooTools") and [qrcode.js](https://davidshimjs.github.io/qrcodejs/ "Cross-browser QRCode generator for javascript").
+**Sloth-tt** is powered by [MooTools](http://mootools.net "A compact Javascript framework"), [Epitome](http://epitome-mvc.github.io/Epitome/ "Epitome - MVC built on MooTools") and [qrcode.js](https://davidshimjs.github.io/qrcodejs/ "Cross-browser QRCode generator for javascript").
 
 Copyright © 2016 mastro-elfo.
 

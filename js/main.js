@@ -232,9 +232,15 @@
 			},
 			onReady: function(){
 				var self = this;
-				this.listenTo(this.model, 'change:uri', function(){
-					self.render();
-				});
+				
+				this.listenTo(this.model, 'change:titleURI', function(){self.render();});
+				this.listenTo(this.model, 'change:timerColor', function(){self.render();});
+				this.listenTo(this.model, 'change:setYear', function(){self.render();});
+				this.listenTo(this.model, 'change:setMonth', function(){self.render();});
+				this.listenTo(this.model, 'change:setDay', function(){self.render();});
+				this.listenTo(this.model, 'change:setHour', function(){self.render();});
+				this.listenTo(this.model, 'change:setMinute', function(){self.render();});
+				this.listenTo(this.model, 'change:setSecond', function(){self.render();});
 				
 				var self = this;
 				$('qrcode-toggle').addEvent('click', function(){
