@@ -114,6 +114,14 @@
 			element: 'edit-title-value',
 			property: 'value',
 			template: '<%=title%>',
+			onReady: function(){
+				var self = this;
+				this.listenTo(this.model, 'change:title', function(){
+					if(!EDIT_VIEW) {
+						self.element.set('value', self.model.get('title'));
+					}
+				});
+			},
 			events: {
 				'keyup': 'update'
 			},
@@ -278,13 +286,14 @@
 				'#!timer/:title/:timerColor/:year/:month/:day/:hour/:minute/:second': 'timer'
 			},
 			onUndefined: function(){
-				location.href = '#!edit'
+				location.href = '#!edit';
 			},
 			onEdit: function(){
-				$('maincontainer').set('data-page', 'edit');
 				EDIT_VIEW = true;
+				$('maincontainer').set('data-page', 'edit');
 			},
 			onTimer: function(title, timerColor, year, month, day, hour, minute, second) {
+				EDIT_VIEW = false;
 				if(!isNaN(+month)) {
 					month = +month -1;
 				}
@@ -300,7 +309,6 @@
 					set: true
 				});
 				$('maincontainer').set('data-page', 'timer');
-				EDIT_VIEW = false;
 			}
 		});
 	});
