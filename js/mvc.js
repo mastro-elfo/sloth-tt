@@ -217,7 +217,7 @@
 		},
 		render: function(){
 			this.element.empty();
-			if(this.model.get('set') && this.options.getRender.call(this)) {
+			if(/*this.model.get('set') && */this.options.getRender.call(this)) {
 				this.element.set('html', this.template(this.model.toJSON()));
 			}
 			this.parent();
