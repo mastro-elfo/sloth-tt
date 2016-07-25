@@ -3,6 +3,13 @@
 	'use strict';
 	
 	window.addEvent('domready', function(){
+		var matches = location.href.match(/#!timer\/(.*?)$/);
+		if(matches && matches.length == 2) {
+			location.href = '/timer/'+matches[1];
+		}
+	});
+	
+	window.addEvent('domready', function(){
 		var EDIT_VIEW = false;
 		
 		var timer = new window.MVC.Timer();
@@ -242,19 +249,14 @@
 				this.listenTo(this.model, 'change:setMinute', function(){self.render();});
 				this.listenTo(this.model, 'change:setSecond', function(){self.render();});
 				
-				var self = this;
-				$('qrcode-toggle').addEvent('click', function(){
-					self.element.addClass('open');
-				});
-				
 				this.render();
-			},
-			events: {
-				'click': 'close'
-			},
-			onClose: function(){
-				this.element.removeClass('open');
 			}
+		});
+		new window.MVC.DialogView({
+			model: timer,
+			element: 'qrcode',
+			toggleElement: $('qrcode-toggle'),
+			dialogElement: $('qrcode-dialog')
 		});
 		
 		// Back to timer button
@@ -271,18 +273,91 @@
 			property: 'href'
 		});
 		
-		// Edit output
-		new window.MVC.LinkView ({
-			model: timer,
-			element: 'edit-output',
-			property: 'value'
-		});
-		
 		// Share link
 		new window.MVC.LinkView ({
 			model: timer,
 			element: 'share-link',
-			property: 'value'
+			property: 'value',
+			events: {
+				'click': 'click'
+			},
+			'onClick': function(){
+				this.element.select();
+			}
+		});
+		
+		new window.MVC.DialogView({
+			model: timer,
+			element: 'share-link',
+			toggleElement: $('link-toggle'),
+			dialogElement: $('link-dialog')
+		});
+		
+		// Share via email
+		new window.MVC.LinkView ({
+			model: timer,
+			element: 'share-email',
+			property: 'href',
+			beforeLink: 'mailto:?subject=Sloth-tt:%20<%=title%>&body=Hi,%0AI%20want%20to%20share%20this%20timer%20with%20you%0A%0A',
+			afterLink: '%0A%0AHave%20a%20nice%20day!'
+		});
+		
+		
+		// Share via facebook
+		// OG-URL
+		new window.MVC.LinkView ({
+			model: timer,
+			element: 'meta-og-url',
+			property: 'content'
+		});
+		
+		// OG-TITLE
+		new window.MVC.BaseView({
+			model: timer,
+			element: 'meta-og-title',
+			template: '',
+			onReady: function(){
+				var self = this;
+				this.listenTo(this.model, 'change:trigger', function(){
+					self.options.template = self.model.get('title');
+					self.render();
+				});
+				this.render();
+			}
+		});
+		
+		$('share-on-facebook').addEvent('click', function(){
+			window.open('http://www.facebook.com/sharer.php?' +
+					'u='+encodeURIComponent(location.href) +
+					'&t='+encodeURIComponent(document.title),
+					' sharer', 'toolbar=0, status=0, width=626, height=436');
+			return false;
+		});
+		
+		// Google share
+		new window.MVC.BaseView ({
+			model: timer,
+			element: 'share-on-google',
+			events: {
+				'click': 'click'
+			},
+			onClick: function(){
+				window.open('https://plus.google.com/share?url='+encodeURI(location.href), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+				return false;
+			}
+		});
+		
+		// Twitter share
+		new window.MVC.BaseView ({
+			model: timer,
+			element: 'share-on-twitter',
+			events: {
+				'click': 'click'
+			},
+			onClick: function(){
+				window.open('https://twitter.com/intent/tweet?text='+this.model.get('titleURI')+'&url='+encodeURI(location.href), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+				return false;
+			}
 		});
 		
 		// Router
@@ -292,7 +367,7 @@
 				'#!timer/:title/:timerColor/:year/:month/:day/:hour/:minute/:second': 'timer'
 			},
 			onUndefined: function(){
-				location.href = '#!edit';
+				location.href = '/edit/';
 			},
 			onEdit: function(){
 				EDIT_VIEW = true;

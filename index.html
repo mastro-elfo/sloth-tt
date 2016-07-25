@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-			<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-			<meta name="application-name" content="Sloth-tt">
-			<meta name="author" content="mastro-elfo (Francesco Michienzi)">
-			<meta name="keywords" content="countdown,countup,counter,time,timer,date,webapp,sloth">
-			<meta name="description" content="Sloth-tt is an online webapp that let you define an endpoint and shows how much time il left, or from how long it is expired.">
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+			<meta name="application-name" content="Sloth-tt"/>
+			<meta name="author" content="mastro-elfo (Francesco Michienzi)"/>
+			<meta name="keywords" content="countdown,countup,counter,time,timer,date,endpoint,left,expire,webapp,general purpose,sloth"/>
+			<meta name="description" content="Sloth-tt is an online webapp that lets you define an endpoint and shows how much time is left, or from how long it is expired."/>
 			
-			<title>Sloth-tt</title>
+			<meta name="google-site-verification" content="CYBDUW2aXWYfj885gBxn2OGUFuaZyOchdCQCfTEgQC4" />
 			
-			<link rel="icon" href="media/timer.svg">
+			<title>Sloth-tt - The best general purpose countdown timer</title>
 			
-			<link rel="stylesheet" href="css/main.css">
+			<link rel="icon" href="media/timer.svg"/>
+			
+			<link rel="stylesheet" href="css/main.css"/>
 			
 			<script type="text/javascript" src="lib/MooTools-Core-1.6.0-compressed.js"></script>
 			<script type="text/javascript" src="lib/Epitome-min.js"></script>
@@ -22,13 +24,19 @@
 			<script type="text/javascript" src="js/colorpicker.js"></script>
 			<script type="text/javascript" src="js/mvc.js"></script>
 			<script type="text/javascript" src="js/main.js"></script>
+			
+			<meta property="og:url"           content="" id="meta-og-url"/>
+			<meta property="og:type"          content="website" />
+			<meta property="og:title"         content="" id="meta-og-title"/>
+			<meta property="og:description"   content="Sloth-tt is an online webapp that lets you define an endpoint and shows how much time is left, or from how long it is expired." />
+			<meta property="og:image"         content="" id="meta-og-image"/>
 		</head>
 		<body>
 			<div data-page="timer" id="maincontainer">
 				<header>
-					<a class="button left" href="" title="Back to timer" id="back-to-timer"><img alt="⏲" src="media/timer.svg"></a>
+					<a class="button left" href="" title="Back to timer" id="back-to-timer"><img alt="⏲" src="media/timer.svg"/></a>
 					<a class="button" href="#!edit" title="Edit a new timer" id="open-edit"><img alt="✎" src="media/pencil.svg"/></a>
-					<h1 id="timer-title"></h1>
+					<h1 id="timer-title">The best countdown timer!</h1>
 					<h1 id="edit-title">Edit</h1>
 				</header>
 				<div class="main" id="edit">
@@ -36,7 +44,7 @@
 						<li>
 							<label>
 								<span>Choose a beautiful title</span>
-								<input required="required" id="edit-title-value" type="text">
+								<input required="required" id="edit-title-value" type="text"/>
 							</label>
 						</li>
 						<li>
@@ -54,8 +62,6 @@
 						</li>
 						<li>
 							<label>
-								<span>To share this timer copy and paste the following link…</span>
-								<input readonly="readonly" id="edit-output" type="text">
 								<a href="" title="Open this timer" id="open-edit-link">Open this timer</a>
 							</label>
 						</li>
@@ -75,18 +81,37 @@
 					</ul>
 				</div>
 				<div class="main" id="timer">
-					<div style="color: rgb(178, 178, 178);" id="timer-timer">
-						<span id="timer-years">15<span class="small">Y</span></span>
-						<span id="timer-months">6<span class="small">M</span></span>
-						<span id="timer-days">13<span class="small">d</span></span>
-						<span id="timer-hours">3<span class="small">h</span></span>
-						<span id="timer-minutes">37<span class="small">m</span></span>
-						<span id="timer-seconds">32<span class="small">s</span></span>
-						<span id="timer-expired"><span class="small"> Expired </span></span>
+					<div id="timer-timer">
+						<span id="timer-years"></span>
+						<span id="timer-months"></span>
+						<span id="timer-days"></span>
+						<span id="timer-hours"></span>
+						<span id="timer-minutes"></span>
+						<span id="timer-seconds"></span>
+						<span id="timer-expired"></span>
 					</div>
-					<p>To share this timer copy and paste the following link: <br>
-					<input readonly="readonly" id="share-link" type="text"></p>
-					<p>Or use this QRcode: <img src="media/qrcode.svg" alt="QRC" id="qrcode-toggle" title="Open the QRCode"> </p><div title="file:///home/francesco/Documenti/git/sloth-tt/index.html#!timer//#333333/0/0/0/0/0/0" id="qrcode"></div><p></p>
+					<p>Share this timer:</p>
+					<p id="share-buttoncontainer">
+						<img src="media/facebook.svg" alt="Facebook" id="share-on-facebook" title="Share on Facebook"/>
+						<img src="media/twitter.svg" alt="Twitter" id="share-on-twitter" title="Share on Twitter"/>
+						<img src="media/google.svg" alt="Google+" id="share-on-google" title="Share on Google+" href=""/>
+						<img src="media/link.svg" alt="Link" id="link-toggle" title="Copy link"/>
+						<img src="media/qrcode.svg" alt="QRC" id="qrcode-toggle" title="Open the QRCode"/>
+						<a id="share-email" title="Click to share this time via email"><img src="media/mail.svg" alt="Send email"/></a>
+					</p>
+					<div title="" id="link-dialog" class="share-dialog">
+						<p>To share this timer copy and paste the following link: <br>
+						<input readonly="readonly" id="share-link" type="text"/></p>
+						<div>
+							<div class="close">&times;</div>
+						</div>
+					</div>
+					<div title="" id="qrcode-dialog" class="share-dialog">
+						<div title="" id="qrcode"></div>
+						<div>
+							<div class="close">&times;</div>
+						</div>
+					</div>
 				</div>
 				<footer>
 					<div id="advertising">
@@ -107,6 +132,5 @@
 					<p>Copyright © 2016 mastro-elfo.</p>
 				</footer>
 			</div>
-		
 	</body>
 </html>
