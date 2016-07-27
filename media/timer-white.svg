@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="timer.svg">
+   sodipodi:docname="timer-white.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="-2.7386879"
-     inkscape:cy="63.775337"
+     inkscape:zoom="2.8"
+     inkscape:cx="45.150421"
+     inkscape:cy="57.763514"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -40,7 +40,9 @@
      inkscape:window-height="744"
      inkscape:window-x="81"
      inkscape:window-y="24"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     inkscape:object-paths="true"
+     inkscape:snap-smooth-nodes="false" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -58,6 +60,13 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-165.08929,-273.04858)">
+    <ellipse
+       style="opacity:1;fill:#ffffff;fill-opacity:0.94117647;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
+       id="path4135"
+       cx="215.05083"
+       cy="323.05954"
+       rx="41.747242"
+       ry="41.772774" />
     <g
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#40c0ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="text4136"

@@ -5,113 +5,75 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 			<meta name="application-name" content="Sloth-tt"/>
 			<meta name="author" content="mastro-elfo (Francesco Michienzi)"/>
-			<meta name="keywords" content="countdown,countup,counter,time,timer,date,endpoint,left,expire,webapp,general purpose,sloth"/>
-			<meta name="description" content="Sloth-tt is an online webapp that lets you define an endpoint and shows how much time is left, or from how long it is expired."/>
+			<meta name="keywords" content="countdown,countup,counter,time,timer,work,how,date,endpoint,left,expire,webapp,general purpose,sloth"/>
+			<meta name="description" content="How does Sloth-tt work?"/>
 			
 			<meta name="google-site-verification" content="CYBDUW2aXWYfj885gBxn2OGUFuaZyOchdCQCfTEgQC4" />
 			
-			<title>Sloth-tt - The best general purpose countdown timer</title>
+			<title>Sloth-tt - How does it work?</title>
 			
-			<link rel="icon" href="media/timer.svg"/>
+			<link rel="icon" href="/media/timer-white.svg"/>
 			
-			<link rel="stylesheet" href="css/main.css"/>
-			
-			<script type="text/javascript" src="lib/MooTools-Core-1.6.0-compressed.js"></script>
-			<script type="text/javascript" src="lib/Epitome-min.js"></script>
-			<script type="text/javascript" src="lib/qrcode-min.js"></script>
-			<script type="text/javascript" src="js/datepicker.js"></script>
-			<script type="text/javascript" src="js/timepicker.js"></script>
-			<script type="text/javascript" src="js/colorpicker.js"></script>
-			<script type="text/javascript" src="js/mvc.js"></script>
-			<script type="text/javascript" src="js/main.js"></script>
-			
-			<meta property="og:url"           content="" id="meta-og-url"/>
-			<meta property="og:type"          content="website" />
-			<meta property="og:title"         content="" id="meta-og-title"/>
-			<meta property="og:description"   content="Sloth-tt is an online webapp that lets you define an endpoint and shows how much time is left, or from how long it is expired." />
-			<meta property="og:image"         content="" id="meta-og-image"/>
+			<link rel="stylesheet" href="/css/main.css"/>
 		</head>
 		<body>
 			<div data-page="timer" id="maincontainer">
 				<header>
-					<a class="button left" href="" title="Back to timer" id="back-to-timer"><img alt="⏲" src="media/timer.svg"/></a>
-					<a class="button" href="#!edit" title="Edit a new timer" id="open-edit"><img alt="✎" src="media/pencil.svg"/></a>
-					<h1 id="timer-title">The best countdown timer!</h1>
-					<h1 id="edit-title">Edit</h1>
+					<a class="button" href="/edit/" title="Create a new timer" id="open-edit"><img alt="✎" src="/media/pencil.svg"/></a>
+					<h1>The best countdown timer since <a href="/timer/The%20best%20countdown%20timer!/#333333/1984/9/20/0/0/0/" title="1984">1984</a>!</h1>
 				</header>
-				<div class="main" id="edit">
+				<div class="main">
+					<h1>Create a new timer</h1>
+					<p>To start creating a countdown timer, click on the pencil icon in the top right corner <a title="Click to start creating a timer" href="/edit/"><img alt="Pencil icon" src="/media/pencil.svg"/></a>.</p>
+					<p>First you have to choose a title that will be displayed on top of the page.</p>
+					<p>Then define the endpoint: choose the date and time when the timer will expire. You can choose also a past date/time, in this case the timer is already expired.</p>
+					<p>Finally choose a color from the list. Both the title and the timer will have that color.</p>
+					
+					<h1>View and share timer</h1>
+					<p>When you are in edit page, you can click the timer icon in the top left corner <img alt="Timer icon" src="/media/timer.svg"/> to view the timer.</p>
+					<p>A timer can be shared to social networks directly, copying and sending the URL or the QRCode. A timer can also be included in an iframe.</p>
+					
+					<h1>Advanced timers</h1>
+					<p>There are some keywords that you can use when you define the endpoint. For now there's no user interface but you can manage directly the page URL.</p>
+					<p>There are 6 date/time fields in URL, that are (from left to right) year, month, day, hours, minutes and seconds of the endpoint. These fields are usually numbers but can be replaced by one of the following keywords:</p>
 					<ul>
-						<li>
-							<label>
-								<span>Choose a beautiful title</span>
-								<input required="required" id="edit-title-value" type="text"/>
-							</label>
-						</li>
-						<li>
-							<label>
-								<span>When will this timer expire?</span>
-							</label>
-							<div id="date-picker"></div>
-							<div id="time-picker"></div>
-						</li>
-						<li>
-							<label>
-								<span>Choose your favourite color</span>
-							</label>
-							<div id="color-picker"></div>
-						</li>
-						<li>
-							<label>
-								<a href="" title="Open this timer" id="open-edit-link">Open this timer</a>
-							</label>
-						</li>
-						<li>
-							<label>
-								<span>… or try some predefined timers:</span>
-								<ul class="list">
-									<li><a href="#!timer/End%20of%20UNIX%20era/#E54C4C/2038/1/19/3/14/7" title="End of UNIX era">End of UNIX era</a></li>
-									<li><a href="#!timer/Columbus dicovered America/#39C5C5/1492/10/12/2/0/0" title="Columbus dicovered America">Columbus dicovered America</a></li>
-									<li><a href="#!timer/%3C%25%3Dday%25%3E%2F%3C%25%3Dmonth%25%3E%2F%3C%25%3Dyear%25%3E/#52C552/this/this/this/0/0/0" title="This timer works like a clock">A clock</a></li>
-									<li><a href="#!timer/Expires%20at%208%20am%26hellip%3B/#C539C5/this/next/0/8/0/0" title="Expires at 8am on the last day of the current month...">The last day of a month</a></li>
-									<li><a href="#!timer/Halloween%20%3C%25%3Dyear%25%3E%20%F0%9F%91%BB%F0%9F%91%BB/#333333/next/10/31/0/0/0" title="Oh no! So much work to do and so few time!">Next Halloween</a></li>
-									<li><a href="#!timer/Next%20February%20the%2029th/#6666CC/2016%4/2/29/0/0/0" title="How many days until the next February the 29th?">Next February the 29th</a></li>
-								</ul>
-							</label>
-						</li>
+						<li><code>this</code> means that the field is replaced with the actual value;</li>
+						<li><code>next</code> acts like <code>this</code> if the timer isn't expired, otherwise adds 1 to that field;</li>
+						<li><code>&lt;n&gt;%&lt;m&gt;</code> uses the number &lt;n&gt; if the timer isn't expired, otherwise keeps adding &lt;m&gt; until it isn't expired anymore.</li>
 					</ul>
-				</div>
-				<div class="main" id="timer">
-					<div id="timer-timer">
-						<span id="timer-years"></span>
-						<span id="timer-months"></span>
-						<span id="timer-days"></span>
-						<span id="timer-hours"></span>
-						<span id="timer-minutes"></span>
-						<span id="timer-seconds"></span>
-						<span id="timer-expired"></span>
-					</div>
-					<p>Share this timer:</p>
-					<p id="share-buttoncontainer">
-						<img src="media/facebook.svg" alt="Facebook" id="share-on-facebook" title="Share on Facebook"/>
-						<img src="media/twitter.svg" alt="Twitter" id="share-on-twitter" title="Share on Twitter"/>
-						<img src="media/google.svg" alt="Google+" id="share-on-google" title="Share on Google+" href=""/>
-						<img src="media/link.svg" alt="Link" id="link-toggle" title="Copy link"/>
-						<img src="media/qrcode.svg" alt="QRC" id="qrcode-toggle" title="Open the QRCode"/>
-						<a id="share-email" title="Click to share this time via email"><img src="media/mail.svg" alt="Send email"/></a>
-					</p>
-					<div title="" id="link-dialog" class="share-dialog">
-						<p>To share this timer copy and paste the following link: <br>
-						<input readonly="readonly" id="share-link" type="text"/></p>
-						<div>
-							<div class="close">&times;</div>
-						</div>
-					</div>
-					<div title="" id="qrcode-dialog" class="share-dialog">
-						<div title="" id="qrcode"></div>
-						<div>
-							<div class="close">&times;</div>
-						</div>
-					</div>
+					
+					<p>You can use an advanced syntax in title to create a more powerful timer. This works better with the timer keywords described above. The syntax is <code>&lt;%=field%&gt;</code></p>
+					<p>You have to replace <code>field</code> with one of the following strings (without quotes!):</p>
+					<ul>
+						<li>&quot;year&quot; to display the evaluated year of the endpoint</li>
+						<li>&quot;month&quot; to display the evaluated month of the endpoint</li>
+						<li>&quot;day&quot; to display the evaluated day of the endpoint</li>
+						<li>&quot;hour&quot; to display the evaluated hours of the endpoint</li>
+						<li>&quot;minute&quot; to display the evaluated minutes of the endpoint</li>
+						<li>&quot;second&quot; to display the evaluated seconds of the endpoint</li>
+					</ul>
+					<p>This means that if you use a keyword (<code>this</code>, <code>next</code> or <code>&lt;n&gt;%&lt;m&gt;</code>) to define a timer you will see the right value in the title.</p>
+					
+					<h1>How time is evaluated?</h1>
+					<p>This app works on client-side. Javascript reads <code>location.href</code> to get the timer data and set the timer. Then, each second, the timer does the following steps:</p>
+					<ol>
+						<li>numbers are kept as they are;</li>
+						<li>all <code>&lt;n&gt;%&lt;m&gt;</code> are evaluated from right to left (i.e. from seconds to year);</li>
+						<li>all <code>this</code> and <code>next</code> keywords are replaced with the correspoinding actual date/time value;</li>
+						<li>from left to right and until the timer isn't expired, each <code>next</code> keyword is incremented by 1.</li>
+					</ol>
+					<p>After these steps, the endpoint is evaluated. The time difference is obtained by wrapping the difference in milliseconds between the end point and &quot;now&quot;: <code>new Date(+endpoint -(+new Date()))</code>. As known, the date offset is January the 1<sup>st</sup> 1970 00:00:00.000, so to get the time difference we have to subtract 1970 to the year and 1 to the day.</p>
+					
+					<h1>Is the time in sync with my pc clock?</h1>
+					<p>As much as possible. This is done in this way:</p>
+<pre class="code"><code>
+  setTimeout(function(){
+    setInterval(function(){
+      idle();
+    }, 1000);
+  }, new Date.getMilliseconds());
+</code></pre>
+					<p>A little difference occurs because of the slowness of the evaluation process.</p>
 				</div>
 				<footer>
 					<div id="advertising">

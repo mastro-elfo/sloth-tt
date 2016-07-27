@@ -192,31 +192,10 @@
 	
 	window.addEvent('domready', function(){
 		// Share via facebook
-		// OG-URL
-		//new window.MVC.LinkView ({
-		//	model: timer,
-		//	element: 'meta-og-url',
-		//	property: 'content'
-		//});
-		
-		// OG-TITLE
-		//new window.MVC.BaseView({
-		//	model: timer,
-		//	element: 'meta-og-title',
-		//	template: '',
-		//	onReady: function(){
-		//		var self = this;
-		//		this.listenTo(this.model, 'change:trigger', function(){
-		//			self.options.template = self.model.get('title');
-		//			self.render();
-		//		});
-		//		this.render();
-		//	}
-		//});
-		
 		$('share-on-facebook').addEvent('click', function(){
 			$('meta-og-url').set('content', location.href);
 			$('meta-og-title').set('content', document.title);
+			$('meta-og-image').set('content', location.origin+'/media/timer.png');
 			window.open('http://www.facebook.com/sharer.php?' +
 					'u='+encodeURIComponent(location.href) +
 					'&t='+encodeURIComponent(document.title),

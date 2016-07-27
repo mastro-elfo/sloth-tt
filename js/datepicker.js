@@ -35,7 +35,7 @@
 			
 			new Element('div', {
 				'class': 'datepicker-leftarrow',
-				'html': '<img src="media/left.svg" alt="&lt;"/>'
+				'html': '<img src="/media/left.svg" alt="&lt;"/>'
 			}).addEvent('click', function(){
 				self.set('year', +self.options.year -1);
 			}).inject(yearHeader);
@@ -48,7 +48,7 @@
 			
 			new Element('div', {
 				'class': 'datepicker-rightarrow',
-				'html': '<img src="media/right.svg" alt="&gt;"/>'
+				'html': '<img src="/media/right.svg" alt="&gt;"/>'
 			}).addEvent('click', function(){
 				self.set('year', +self.options.year +1);
 			}).inject(yearHeader);
@@ -59,7 +59,7 @@
 			
 			new Element('div', {
 				'class': 'datepicker-leftarrow',
-				'html': '<img src="media/left.svg" alt="&lt;"/>'
+				'html': '<img src="/media/left.svg" alt="&lt;"/>'
 			}).addEvent('click', function(){
 				self.options.month > 0?
 					self.set('month', +self.options.month -1):
@@ -74,7 +74,7 @@
 			
 			new Element('div', {
 				'class': 'datepicker-rightarrow',
-				'html': '<img src="media/right.svg" alt="&gt;"/>'
+				'html': '<img src="/media/right.svg" alt="&gt;"/>'
 			}).addEvent('click', function(){
 				self.options.month < 11 ?
 					self.set('month', +self.options.month +1) :

@@ -22,7 +22,7 @@ header {
     line-height: 2em;
     text-align: center;
 }
-header > .button {
+header > a.button {
     color: inherit;
     cursor: pointer;
     display: block;
@@ -31,7 +31,13 @@ header > .button {
     height: 1.333em;
     text-decoration: none;
     width: 1.333em;
+  filter: grayscale(100%);
 }
+
+header > a.button:hover {
+	filter: grayscale(0%);
+}
+
 header > .button.left {
     float: left;
 }
@@ -39,11 +45,24 @@ header > .button > img {
     height: 70%;
     margin-top: 15%;
 }
+
+pre.code,
+code {
+	background-color: #ccc;
+}
+pre.code {
+	padding-bottom: 1em;
+}
+
 #open-edit {
     font-weight: bold;
 }
 header > h1 {
     font-size: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 0 0 1em;
 }
 #timer-title {
     clear: both;
@@ -115,12 +134,19 @@ header > h1 {
 div.main h1, div.main p {
     padding: 0 1em;
 }
+div.main p img {
+	height: 1.5em;
+  vertical-align: middle;
+}
+
 footer {
     font-size: 75%;
+  padding: 1em 0;
 }
 footer p {
     padding: 0 1em;
 }
+
 #date-picker {
     background-color: #dddddd;
 }
@@ -296,4 +322,11 @@ footer p {
 #advertising {
     text-align: center;
 }
+
+
+
+
+
+
+
 
