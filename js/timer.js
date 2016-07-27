@@ -106,13 +106,13 @@
 			}
 			timer.set({
 				title: decodeURIComponent(matches[1].replace(/\%252F/gi, '%2F')),
-				timerColor: matches[2],
-				setYear: matches[3],
-				setMonth: matches[4],
-				setDay: matches[5],
-				setHour: matches[6],
-				setMinute: matches[7],
-				setSecond: matches[8],
+				timerColor: decodeURIComponent(matches[2]),
+				setYear: decodeURIComponent(matches[3]),
+				setMonth: decodeURIComponent(matches[4]),
+				setDay: decodeURIComponent(matches[5]),
+				setHour: decodeURIComponent(matches[6]),
+				setMinute: decodeURIComponent(matches[7]),
+				setSecond: decodeURIComponent(matches[8]),
 				set: true
 			});
 		}

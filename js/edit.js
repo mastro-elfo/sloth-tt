@@ -85,13 +85,13 @@
 			}
 			timer.set({
 				title: decodeURIComponent(matches[1].replace(/\%252F/gi, '%2F')),
-				timerColor: matches[2],
-				setYear: matches[3],
-				setMonth: matches[4],
-				setDay: matches[5],
-				setHour: matches[6],
-				setMinute: matches[7],
-				setSecond: matches[8],
+				timerColor: decodeURIComponent(matches[2]),
+				setYear: decodeURIComponent(matches[3]),
+				setMonth: decodeURIComponent(matches[4]),
+				setDay: decodeURIComponent(matches[5]),
+				setHour: decodeURIComponent(matches[6]),
+				setMinute: decodeURIComponent(matches[7]),
+				setSecond: decodeURIComponent(matches[8]),
 				set: true
 			});
 		}
@@ -135,7 +135,7 @@
 			color: timer.get('timerColor'),
 			colors: ['#333333', '#B2B2B2', '#E54C4C', '#E5994C', '#C5C539', '#52C552', '#39C5C5', '#6666CC', '#C539C5', ],
 			onSelect: function(){
-				timer.set('timerColor', this.get('color'));
+				timer.set('timerColor', encodeURIComponent(this.get('color')));
 			}
 		});
 	});
